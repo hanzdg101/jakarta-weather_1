@@ -41,18 +41,24 @@ sunset    = unix_to_wib(w["sys"]["sunset"])
 
 updated   = datetime.now(tz=wib).strftime("%d %B %Y, %H:%M WIB")
 day_name  = datetime.now(tz=wib).strftime("%A, %d %B %Y")
-day_only  = datetime.now(tz=wib).strftime("%A")
 
 aqi_labels = {1:"Good", 2:"Fair", 3:"Moderate", 4:"Poor", 5:"Very Poor"}
-aqi_colors = {1:"brightgreen", 2:"yellowgreen", 3:"yellow", 4:"orange", 5:"red"}
+aqi_colors = {1:"#22c55e", 2:"#84cc16", 3:"#f59e0b", 4:"#ef4444", 5:"#dc2626"}
 aqi_emojis = {1:"🟢", 2:"🟡", 3:"🟠", 4:"🔴", 5:"🟣"}
 
 aqi_label = aqi_labels.get(aqi_num, "Unknown") if aqi_num else "Unknown"
-aqi_color = aqi_colors.get(aqi_num, "lightgrey") if aqi_num else "lightgrey"
+aqi_color = aqi_colors.get(aqi_num, "#888888") if aqi_num else "#888888"
 aqi_emoji = aqi_emojis.get(aqi_num, "") if aqi_num else ""
 
-def enc(s):
-    return str(s).replace(" ", "%20").replace(",", "%2C").replace("/", "%2F").replace("(", "%28").replace(")", "%29").replace("°", "%C2%B0").replace("—", "-")
+def card(label, value, sub="", value_color="#e2e8f0"):
+    sub_html = f'<p style="margin:2px 0 0;font-size:11px;color:#64748b;">{sub}</p>' if sub else ""
+    return f"""    <td style="padding:6px;">
+      <div style="background:#1e293b;border-radius:10px;padding:10px 12px;min-width:120px;">
+        <p style="margin:0 0 4px;font-size:11px;color:#64748b;">{label}</p>
+        <p style="margin:0;font-size:15px;font-weight:600;color:{value_color};">{value}</p>
+        {sub_html}
+      </div>
+    </td>"""
 
 readme = f"""# 🌦️ Jakarta Weather Tracker
 
@@ -66,23 +72,31 @@ readme = f"""# 🌦️ Jakarta Weather Tracker
 
 ---
 
-## 📊 {condition} — {day_only}
+## 📊 {condition} — {day_name}
 
 <div align="center">
-
-![Suhu](https://img.shields.io/badge/🌡️%20Suhu-{enc(f"{temp}°C (terasa {feels}°C)")}-ff6b35?style=for-the-badge)
-![Min Max](https://img.shields.io/badge/🌡️%20Min%20/%20Max-{enc(f"{temp_min}°C / {temp_max}°C")}-ff8c42?style=for-the-badge)
-![Kelembapan](https://img.shields.io/badge/💧%20Kelembapan-{humidity}%25-4fc3f7?style=for-the-badge)
-![Angin](https://img.shields.io/badge/🌬️%20Angin-{enc(f"{wind_speed} m/s dari {wind_dir}")}-81d4fa?style=for-the-badge)
-![Awan](https://img.shields.io/badge/☁️%20Tutupan%20Awan-{clouds}%25-90a4ae?style=for-the-badge)
-![Jarak Pandang](https://img.shields.io/badge/👁️%20Jarak%20Pandang-{enc(f"{visibility} km")}-78909c?style=for-the-badge)
-![Tekanan](https://img.shields.io/badge/🌫️%20Tekanan%20Udara-{enc(f"{pressure} hPa")}-ab47bc?style=for-the-badge)
-![Hujan](https://img.shields.io/badge/🌧️%20Hujan%20(1%20jam)-{enc(rain_str)}-1e88e5?style=for-the-badge)
-![AQI](https://img.shields.io/badge/🏭%20Kualitas%20Udara-{enc(f"{aqi_label} {aqi_emoji}")}-{aqi_color}?style=for-the-badge)
-![Sunrise](https://img.shields.io/badge/🌅%20Matahari%20Terbit-{enc(f"{sunrise} WIB")}-ffca28?style=for-the-badge)
-![Sunset](https://img.shields.io/badge/🌇%20Matahari%20Terbenam-{enc(f"{sunset} WIB")}-ff7043?style=for-the-badge)
-![Updated](https://img.shields.io/badge/🕗%20Diperbarui-{enc(updated)}-informational?style=for-the-badge)
-
+<table style="border-collapse:collapse;background:#0f172a;border-radius:16px;overflow:hidden;">
+  <tr>
+{card("🌡️ Suhu", f"{temp}°C", f"terasa {feels}°C")}
+{card("🌡️ Min / Max", f"{temp_min}° / {temp_max}°", "hari ini")}
+{card("💧 Kelembapan", f"{humidity}%")}
+  </tr>
+  <tr>
+{card("🌬️ Angin", f"{wind_speed} m/s", f"dari {wind_dir}")}
+{card("☁️ Tutupan Awan", f"{clouds}%")}
+{card("👁️ Jarak Pandang", f"{visibility} km")}
+  </tr>
+  <tr>
+{card("🌫️ Tekanan", f"{pressure} hPa")}
+{card("🌧️ Hujan (1 jam)", rain_str)}
+{card("🏭 Kualitas Udara", f"{aqi_label} {aqi_emoji}", f"AQI {aqi_num}" if aqi_num else "", value_color=aqi_color)}
+  </tr>
+  <tr>
+{card("🌅 Matahari Terbit", sunrise, "WIB")}
+{card("🌇 Matahari Terbenam", sunset, "WIB")}
+{card("🕗 Diperbarui", updated, "")}
+  </tr>
+</table>
 </div>
 
 ---
