@@ -1,5 +1,4 @@
 import json
-import sys
 from datetime import datetime, timezone, timedelta
 
 wib = timezone(timedelta(hours=7))
@@ -11,11 +10,9 @@ def get_wind_dir(deg):
 def unix_to_wib(ts):
     return datetime.fromtimestamp(ts, tz=wib).strftime("%H:%M")
 
-# Load weather
 with open("weather.json") as f:
     w = json.load(f)
 
-# Load air quality
 try:
     with open("air.json") as f:
         a = json.load(f)
@@ -42,23 +39,9 @@ sunset    = unix_to_wib(w["sys"]["sunset"])
 updated   = datetime.now(tz=wib).strftime("%d %B %Y, %H:%M WIB")
 day_name  = datetime.now(tz=wib).strftime("%A, %d %B %Y")
 
-aqi_labels = {1:"Good", 2:"Fair", 3:"Moderate", 4:"Poor", 5:"Very Poor"}
-aqi_colors = {1:"#22c55e", 2:"#84cc16", 3:"#f59e0b", 4:"#ef4444", 5:"#dc2626"}
-aqi_emojis = {1:"🟢", 2:"🟡", 3:"🟠", 4:"🔴", 5:"🟣"}
-
-aqi_label = aqi_labels.get(aqi_num, "Unknown") if aqi_num else "Unknown"
-aqi_color = aqi_colors.get(aqi_num, "#888888") if aqi_num else "#888888"
-aqi_emoji = aqi_emojis.get(aqi_num, "") if aqi_num else ""
-
-def card(label, value, sub="", value_color="#e2e8f0"):
-    sub_html = f'<p style="margin:2px 0 0;font-size:11px;color:#64748b;">{sub}</p>' if sub else ""
-    return f"""    <td style="padding:6px;">
-      <div style="background:#1e293b;border-radius:10px;padding:10px 12px;min-width:120px;">
-        <p style="margin:0 0 4px;font-size:11px;color:#64748b;">{label}</p>
-        <p style="margin:0;font-size:15px;font-weight:600;color:{value_color};">{value}</p>
-        {sub_html}
-      </div>
-    </td>"""
+aqi_labels = {1:"Good 🟢", 2:"Fair 🟡", 3:"Moderate 🟠", 4:"Poor 🔴", 5:"Very Poor 🟣"}
+aqi_label  = aqi_labels.get(aqi_num, "Unknown") if aqi_num else "Unknown"
+aqi_str    = f"{aqi_label} (AQI {aqi_num})" if aqi_num else "—"
 
 readme = f"""# 🌦️ Jakarta Weather Tracker
 
@@ -74,30 +57,14 @@ readme = f"""# 🌦️ Jakarta Weather Tracker
 
 ## 📊 {condition} — {day_name}
 
-<div align="center">
-<table style="border-collapse:collapse;background:#0f172a;border-radius:16px;overflow:hidden;">
-  <tr>
-{card("🌡️ Suhu", f"{temp}°C", f"terasa {feels}°C")}
-{card("🌡️ Min / Max", f"{temp_min}° / {temp_max}°", "hari ini")}
-{card("💧 Kelembapan", f"{humidity}%")}
-  </tr>
-  <tr>
-{card("🌬️ Angin", f"{wind_speed} m/s", f"dari {wind_dir}")}
-{card("☁️ Tutupan Awan", f"{clouds}%")}
-{card("👁️ Jarak Pandang", f"{visibility} km")}
-  </tr>
-  <tr>
-{card("🌫️ Tekanan", f"{pressure} hPa")}
-{card("🌧️ Hujan (1 jam)", rain_str)}
-{card("🏭 Kualitas Udara", f"{aqi_label} {aqi_emoji}", f"AQI {aqi_num}" if aqi_num else "", value_color=aqi_color)}
-  </tr>
-  <tr>
-{card("🌅 Matahari Terbit", sunrise, "WIB")}
-{card("🌇 Matahari Terbenam", sunset, "WIB")}
-{card("🕗 Diperbarui", updated, "")}
-  </tr>
-</table>
-</div>
+| | | | |
+|:---:|:---|:---:|:---|
+| 🌡️ | **Suhu** &nbsp; `{temp}°C` *(terasa {feels}°C)* | 💧 | **Kelembapan** &nbsp; `{humidity}%` |
+| 🌡️ | **Min / Max** &nbsp; `{temp_min}° / {temp_max}°` | ☁️ | **Tutupan Awan** &nbsp; `{clouds}%` |
+| 🌬️ | **Angin** &nbsp; `{wind_speed} m/s` dari `{wind_dir}` | 👁️ | **Jarak Pandang** &nbsp; `{visibility} km` |
+| 🌫️ | **Tekanan** &nbsp; `{pressure} hPa` | 🌧️ | **Hujan (1 jam)** &nbsp; `{rain_str}` |
+| 🌅 | **Sunrise** &nbsp; `{sunrise} WIB` | 🌇 | **Sunset** &nbsp; `{sunset} WIB` |
+| 🏭 | **Kualitas Udara** &nbsp; {aqi_str} | 🕗 | **Update** &nbsp; `{updated}` |
 
 ---
 
