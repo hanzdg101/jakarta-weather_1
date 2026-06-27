@@ -115,7 +115,7 @@ metrics = [
     ("👁️ Visibility", f"{visibility} km",       ""),
     ("☁️ Clouds",     f"{clouds}%",             ""),
     ("🌫️ Pressure",   f"{pressure} hPa",        ""),
-    ("🌧️ Rain (1h)",  rain_str,                 ""),
+    ("🌡️ Dew Point",  f"{round(temp - ((100 - humidity) / 5))}°C", ""),
     ("🌅 Sunrise",    sunrise,                  "WIB"),
     ("🌇 Sunset",     sunset,                   "WIB"),
     ("🏭 Air Quality", aqi_label,               f"AQI {aqi}" if aqi else ""),
