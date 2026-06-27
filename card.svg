@@ -20,11 +20,11 @@
   <text x="24" y="100" font-size="56">🌥️</text>
 
   <!-- Big temperature -->
-  <text x="100" y="85" font-size="52" font-weight="600" fill="#f1f5f9">27°C</text>
-  <text x="102" y="108" font-size="13" fill="#64748b">terasa 30°C · 26°–27°</text>
+  <text x="100" y="85" font-size="52" font-weight="600" fill="#f1f5f9">33°C</text>
+  <text x="102" y="108" font-size="13" fill="#64748b">terasa 39°C · 32°–34°</text>
 
   <!-- Condition -->
-  <text x="102" y="130" font-size="15" font-weight="500" fill="#94a3b8">Overcast Clouds</text>
+  <text x="102" y="130" font-size="15" font-weight="500" fill="#94a3b8">Broken Clouds</text>
 
   <!-- Divider -->
   <line x1="24" y1="148" x2="516" y2="148" stroke="#1e293b" stroke-width="1"/>
@@ -32,20 +32,20 @@
   <!-- Metrics grid: 3 columns x 3 rows -->
   <rect x="24" y="162" width="156" height="40" rx="8" fill="#1e293b"/>
   <text x="34" y="178" font-size="10" fill="#475569">💧 Humidity</text>
-  <text x="34" y="194" font-size="14" font-weight="500" fill="#e2e8f0">89%</text>
+  <text x="34" y="194" font-size="14" font-weight="500" fill="#e2e8f0">62%</text>
   <rect x="188" y="162" width="156" height="40" rx="8" fill="#1e293b"/>
   <text x="198" y="178" font-size="10" fill="#475569">🌬️ Wind</text>
   <text x="198" y="194" font-size="14" font-weight="500" fill="#e2e8f0">0.45 m/s</text>
-  <text x="266" y="194" font-size="10" fill="#475569">dari S</text>
+  <text x="266" y="194" font-size="10" fill="#475569">dari W</text>
   <rect x="352" y="162" width="156" height="40" rx="8" fill="#1e293b"/>
   <text x="362" y="178" font-size="10" fill="#475569">👁️ Visibility</text>
   <text x="362" y="194" font-size="14" font-weight="500" fill="#e2e8f0">10.0 km</text>
   <rect x="24" y="208" width="156" height="40" rx="8" fill="#1e293b"/>
   <text x="34" y="224" font-size="10" fill="#475569">☁️ Clouds</text>
-  <text x="34" y="240" font-size="14" font-weight="500" fill="#e2e8f0">100%</text>
+  <text x="34" y="240" font-size="14" font-weight="500" fill="#e2e8f0">54%</text>
   <rect x="188" y="208" width="156" height="40" rx="8" fill="#1e293b"/>
   <text x="198" y="224" font-size="10" fill="#475569">🌫️ Pressure</text>
-  <text x="198" y="240" font-size="14" font-weight="500" fill="#e2e8f0">1010 hPa</text>
+  <text x="198" y="240" font-size="14" font-weight="500" fill="#e2e8f0">1008 hPa</text>
   <rect x="352" y="208" width="156" height="40" rx="8" fill="#1e293b"/>
   <text x="362" y="224" font-size="10" fill="#475569">🌧️ Rain (1h)</text>
   <text x="362" y="240" font-size="14" font-weight="500" fill="#e2e8f0">—</text>
@@ -64,6 +64,6 @@
   <text x="398" y="286" font-size="10" fill="#475569">AQI 1</text>
 
   <!-- Footer -->
-  <text x="270" y="308" font-size="11" fill="#334155" text-anchor="middle">⚙️ Auto-updated via GitHub Actions · 27 Jun 2026, 04:06 WIB</text>
+  <text x="270" y="308" font-size="11" fill="#334155" text-anchor="middle">⚙️ Auto-updated via GitHub Actions · 27 Jun 2026, 13:37 WIB</text>
 
 </svg>

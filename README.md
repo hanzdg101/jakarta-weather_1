@@ -10,16 +10,16 @@
 
 ---
 
-## 📊 Overcast Clouds — Saturday, 27 June 2026
+## 📊 Broken Clouds — Saturday, 27 June 2026
 
 | | | | |
 |:---:|:---|:---:|:---|
-| 🌡️ | **Suhu** &nbsp; `27°C` *(terasa 30°C)* | 💧 | **Kelembapan** &nbsp; `89%` |
-| 🌡️ | **Min / Max** &nbsp; `26° / 27°` | ☁️ | **Tutupan Awan** &nbsp; `100%` |
-| 🌬️ | **Angin** &nbsp; `0.45 m/s` dari `S` | 👁️ | **Jarak Pandang** &nbsp; `10.0 km` |
-| 🌫️ | **Tekanan** &nbsp; `1010 hPa` | 🌧️ | **Hujan (1 jam)** &nbsp; `—` |
+| 🌡️ | **Suhu** &nbsp; `33°C` *(terasa 39°C)* | 💧 | **Kelembapan** &nbsp; `62%` |
+| 🌡️ | **Min / Max** &nbsp; `32° / 34°` | ☁️ | **Tutupan Awan** &nbsp; `54%` |
+| 🌬️ | **Angin** &nbsp; `0.45 m/s` dari `W` | 👁️ | **Jarak Pandang** &nbsp; `10.0 km` |
+| 🌫️ | **Tekanan** &nbsp; `1008 hPa` | 🌧️ | **Hujan (1 jam)** &nbsp; `—` |
 | 🌅 | **Sunrise** &nbsp; `06:02 WIB` | 🌇 | **Sunset** &nbsp; `17:48 WIB` |
-| 🏭 | **Kualitas Udara** &nbsp; Good 🟢 (AQI 1) | 🕗 | **Update** &nbsp; `27 June 2026, 04:06 WIB` |
+| 🏭 | **Kualitas Udara** &nbsp; Good 🟢 (AQI 1) | 🕗 | **Update** &nbsp; `27 June 2026, 13:37 WIB` |
 
 ---
 
